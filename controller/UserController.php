@@ -20,7 +20,6 @@ class UserController
             $user->name = htmlentities($_POST['name']);
             $user->sectors = $_POST['sectors'];
             $user->id = $_SESSION['user']->id;
-            Common::saveErrorMsg($_SESSION['user']->id);
             if ($user->save()) {
                 $_SESSION['user'] = $user;
                 Common::saveOKMsg("Info updated");
