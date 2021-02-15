@@ -7,11 +7,6 @@ use Helmestest\Controllers\UserController;
 use Helmestest\Models\Sector;
 
 Common::init();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uc = new UserController();
-    $response = $uc->submit();
-}
 ?>
 <!DOCTYPE html>
 <head>
@@ -20,14 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <?php
-if (!empty($_SESSION['response'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $uc = new UserController();
+    $response = $uc->submit();
+
     echo '<p';
-    if ($_SESSION['response']['type'] == Common::RESPONSE_TYPE_ERROR) {
+    if ($response['type'] == Common::RESPONSE_TYPE_ERROR) {
         echo ' style="color: red;"';
     } else {
         echo ' style="color: green;"';
     }
-    echo '>' . $_SESSION['response']['message'] . '</p>';
+    echo '>' . $response['message'] . '</p>';
 }
 ?>
 <br>
