@@ -1,0 +1,26 @@
+{
+  "name": "helmes/test",
+  "description": "Test assigment",
+  "authors": [
+    {
+      "name": "Olga Stepanova",
+      "email": "olga@stepanova.ee"
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "7.4.0"
+    },
+    "optimize-autoloader": true
+  },
+  "require": {
+    "php": ">=7.4",
+    "thingengineer/mysqli-database-class": "dev-master"
+  },
+  "autoload": {
+    "classmap": [
+      "model",
+      "controller"
+    ]
+  }
+}
