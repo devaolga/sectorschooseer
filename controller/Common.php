@@ -18,10 +18,10 @@ class Common
     public const RESPONSE_TYPE_MESSAGE = "msg";
 
     //TODO This should be in .env file
-    private const HOST = "0.0.0.0";
-    private const USER = "newuser";
-    private const PASS = "password";
-    private const DATABASE = "helmes";
+    private const HOST = "localhost";
+    private const USER = "vhost72843s1";
+    private const PASS = "testpass123";
+    private const DATABASE = "vhost72843s1";
     private const PORT = 3306;
 
     public static function init()
@@ -35,9 +35,7 @@ class Common
         } else {
             $_SESSION['user'] = User::getUserByID($_SESSION['user']->id); //refresh in case was updated from outside
         }
-        if (empty($_SESSION['response'])) {
-            $_SESSION['user_id'] = 0;
-        }
+        $_SESSION['response'] = null;
     }
 
     public static function clearResponseMsg()

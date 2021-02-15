@@ -11,22 +11,22 @@ use Helmestest\Models\User;
 class UserController
 {
 
-    public function submit()
+    public function submit(): array
     {
         Common::clearResponseMsg();
-        if (!self::validate()) {
-            return;
+        if (self::validate()) {
+            $user = new User();
+            $user->acceptTerms = (bool)$_POST['accept_terms'];
+            $user->name = htmlentities($_POST['name']);
+            $user->sectors = $_POST['sectors'];
+            $user->id = $_SESSION['user']->id;
+            Common::saveErrorMsg($_SESSION['user']->id);
+            if ($user->save()) {
+                $_SESSION['user'] = $user;
+                Common::saveOKMsg("Info updated");
+            }
         }
-        $user = new User();
-        $user->acceptTerms = (bool) $_POST['accept_terms'];
-        $user->name = htmlentities($_POST['name']);
-        $user->sectors = $_POST['sectors'];
-        $user->id = $_SESSION['user']->id;
-        Common::saveErrorMsg($_SESSION['user']->id);
-        if ($user->save()) {
-            $_SESSION['user'] = $user;
-            Common::saveOKMsg("Info updated");
-        }
+        return $_SESSION['response'];
     }
 
     private function validate()

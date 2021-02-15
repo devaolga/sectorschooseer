@@ -10,7 +10,7 @@ Common::init();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uc = new UserController();
-    $uc->submit();
+    $response = $uc->submit();
 }
 ?>
 <!DOCTYPE html>
